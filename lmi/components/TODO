@@ -1,0 +1,21 @@
+For every component:
+- is name set?
+- are appropriate lru_cache decorators set?
+- are slots enabled?
+
+textbox, button, select should be focusable
+
+additional components:
+- Option
+- ComboBox
+- Menu (which can have submenus)
+
+
+
+The computer is one big composite tool
+The computer should not be responsible for displaying the tools
+Agents can focus on it like they'd focus on any other tool
+Maybe also use pix2struct for some experimental computers
+The virtual world will have phones, desktops, laptops, buildings, social media, etc.
+Don't use a DIY social media. Use the real deal. Discord / Twitter / Reddit
+Virtual world:
