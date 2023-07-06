@@ -1,21 +1,22 @@
 from typing import Callable, Type
-from gptos.lmi.components.component import Component
-from gptos.lmi.components.stack import Stack
-from gptos.lmi.components.text import Text
+
+from lmi.components.text import Text
 
 
-def normalize(Component):
-    if isinstance(Component, Component):
-        return Component
-    elif isinstance(Component, (str, bool, int, float)):
-        return Text(str(Component))
-    elif isinstance(Component, (list, tuple, set)):
-        return Stack(*Component)
-    elif isinstance(Component, Callable):
-        return Function(Component)
-    elif isinstance(Component, Type):
-        return Class(Component)
-    elif isinstance(Component, module):
-        return Module(Component)
+def normalize(component):
+    """Converts python-native representations to structured component trees"""
+
+    if isinstance(component, component):
+        return component
+    elif isinstance(component, (str, bool, int, float)):
+        return Text(str(component))
+    elif isinstance(component, (list, tuple, set)):
+        return Stack(*component)
+    elif inspect.is_class(component):
+        return Class(component)
+    elif inspect_mate.is_module(component)):
+        return Module(component)
+    elif isinstance(component, Callable):
+        return Function(component)
     else:
-        return Text(repr(Component))
+        return Text(repr(component))
