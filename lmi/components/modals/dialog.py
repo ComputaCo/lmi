@@ -1,7 +1,7 @@
-from lmi.screens.screen import screen
+from lmi.components.abstract.component import Component
 
 
-class Dialog(screen):
+class Dialog(Component):
     @staticmethod
     def show(title, message, buttons: list[str] = ["ok"]):
         pass

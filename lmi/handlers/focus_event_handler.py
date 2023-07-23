@@ -1,9 +1,10 @@
 import attr
+from lmi.abstract.interactable import LLMCanInteractWithMixin
 
-from gptos.lmi.handlers.event_handler import EventHandler
+from lmi.handlers.event_handler import EventHandler
 
 
-class FocusEventHandler(EventHandler):
+class FocusEventHandler(EventHandler, LLMCanInteractWithMixin):
     @attr.s(auto_attribs=True)
     class FocusEvent(EventHandler.Event):
         pass
@@ -13,3 +14,15 @@ class FocusEventHandler(EventHandler):
 
     def on_unfocus(self, event: FocusEvent):
         pass
+
+    @property
+    def on_focus_tool(self) -> [BaseTool]:
+        return ...
+
+    @property
+    def on_unfocus_tool(self) -> [BaseTool]:
+        return ...
+
+    @property
+    def tools(self) -> list:
+        return super().tools + [self.on_focus_tool, self.on_unfocus_tool]

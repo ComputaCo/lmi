@@ -1,5 +1,5 @@
 from typing import Callable
-from gptos.lmi.components.function import Function
+from lmi.components.python.function import Function
 
 
 class Button(Function):

@@ -1,15 +1,14 @@
 import attr
 from abc import abstractmethod
 
-from gptos.lmi.components.component import Component
-from gptos.lmi.components.scrollbox import ScrollView
-from gptos.lmi.misc.alignment import Alignment
-from gptos.lmi.misc.truncation import truncate
+from lmi.components.abstract.component import Component
+from lmi.components.layout.scrollbox import ScrollView
+from lmi.consts.alignment import Alignment
+from lmi.consts.truncation import truncate
 
 
 @attr.s(auto_attribs=True)
 class Text(Component):
-
     text: str
     scrollable = False
     truncation_alignment: Alignment = Alignment.LEFT

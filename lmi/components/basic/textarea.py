@@ -1,11 +1,11 @@
 import attr
-from gptos.lmi.components.scrollbox import Scrollbox
-from gptos.lmi.components.text import Text
-from gptos.lmi.handlers.keyboard_event_handler import KeyboardEventHandler
+from lmi.components.layout.scrollbox import Scrollbox
+from lmi.components.form.text import Text
+from lmi.handlers.keyboard_event_handler import KeyboardEventHandler
 
 
 @attr.s(auto_attribs=True)
-class TextBox(Scrollbox, KeyboardEventHandler):
+class TextArea(Scrollbox, KeyboardEventHandler):
     """Used for editing text that requires more than one-shot input. (For one shot input, use Input.)"""
 
     multiline = True
@@ -15,9 +15,9 @@ class TextBox(Scrollbox, KeyboardEventHandler):
     text: Text = attr.ib(init=False, default=attr.Factory(Text))
 
     def input(self, text):
-        self.key_input(KeyboardEventHandler.KeyboardEvent(list(text)))
+        self.on_key_input(KeyboardEventHandler.KeyboardEvent(list(text)))
 
-    def key_input(self, event: KeyboardEventHandler.KeyboardEvent):
+    def on_key_input(self, event: KeyboardEventHandler.KeyboardEvent):
         for key in event.keys:
             if key == "BACKSPACE":
                 self.text = (

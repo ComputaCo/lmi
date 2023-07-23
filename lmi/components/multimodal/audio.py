@@ -1,12 +1,15 @@
 import numpy as np
 from pydub import AudioSegment
 
-from gptos.lmi.components.description import Description
+from lmi.components.media.description import Description
 
 
 class Audio(Description.variant(AudioSegment | np.array)):
     autoplay: bool = False
-    # TOOD: implement autoplay on video as well
+    loop: bool = False
+    # TOOD: implement autoplay and loop on video as well
+    # Add Tools to interacting with video/audio
+    # Make an AbstractMedia Description.variant class
 
     def loader(path):
         if path.suffix == ".wav":

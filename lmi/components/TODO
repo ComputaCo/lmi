@@ -10,6 +10,32 @@ additional components:
 - ComboBox
 - Menu (which can have submenus)
 
+Component
+: Text
+  - content
+  : TextArea
+  : Button
+    - on_click
+  : AbstractSelect
+    - items
+    - multiple_select: bool
+    : SelectList # the list is visible before
+    : ComboBox # the list is visible after opening the list
+: AbstractLayoutComponent
+  - children
+  : Flexbox
+  : Group
+  : Grid
+: ScrollView
+
+
+
+
+
+
+
+
+
 
 
 The computer is one big composite tool

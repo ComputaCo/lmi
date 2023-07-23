@@ -1,7 +1,7 @@
 import numpy as np
 from moviepy import VideoFileClip
 
-from gptos.lmi.components.description import Description
+from lmi.components.media.description import Description
 
 
 Video = Description.variant(

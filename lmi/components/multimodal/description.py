@@ -1,16 +1,15 @@
 from abc import abstractmethod
 from pathlib import Path
-from gptos.lmi.components.text import Text
+from lmi.components.form.text import Text
 import stringcase
 import tensorcode as tc
 
-from gptos.lmi.components.component import Component
-from gptos.lmi.misc.alignment import Alignment
-from gptos.lmi.misc.truncation import truncate
+from lmi.components.abstract.component import Component
+from lmi.misc.alignment import Alignment
+from lmi.misc.truncation import truncate
 
 
 class Description(Text):
-
     obj: object = None
     path: str | Path = None
 

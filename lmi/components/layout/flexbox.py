@@ -1,12 +1,12 @@
 import itertools
 from typing import Literal
 import attr
-from gptos.lmi.components.text import Text
-from gptos.tools.tool import Tool
-from gptos.lmi.components.component import Component
-from gptos.lmi.misc.alignment import Alignment
-from gptos.lmi.misc.truncation import TRUNC_SYMBOL, truncate
-from gptos.lmi.utils import normalize
+from lmi.components.form.text import Text
+from tools.tool import Tool
+from lmi.components.abstract.component import Component
+from lmi.misc.alignment import Alignment
+from lmi.misc.truncation import TRUNC_SYMBOL, truncate
+from lmi.utils import normalize
 
 
 @attr.s(auto_attribs=True)
@@ -50,11 +50,15 @@ class Flexbox(Component):
 
     @property
     def max_size(self) -> int:
-        return sum(child.max_size for child in self._interleave_separators(self.children))
+        return sum(
+            child.max_size for child in self._interleave_separators(self.children)
+        )
 
     @property
     def min_size(self) -> int:
-        return sum(child.min_size for child in self._interleave_separators(self.children))
+        return sum(
+            child.min_size for child in self._interleave_separators(self.children)
+        )
 
     def __attrs_post_init__(self):
         self.children = [normalize(child) for child in self.children]
@@ -140,12 +144,13 @@ class Flexbox(Component):
                         break
 
         else:
-            raise ValueError(f"Invalid truncation alignment: {self.truncation_alignment}")
+            raise ValueError(
+                f"Invalid truncation alignment: {self.truncation_alignment}"
+            )
 
         return children
 
     def _shrink_to_fit(self, size, children):
-
         # maybe decrease size to fit the children
         total_max_size = sum(
             [child.max_size + len(self.separator) for child in children]

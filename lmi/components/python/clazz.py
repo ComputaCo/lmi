@@ -4,13 +4,12 @@ import pickle
 from typing import Type
 import attr
 
-from gptos.tools.tool import PyObjectTool, Tool
-from gptos.lmi.components.description import Description
+from tools.tool import PyObjectTool, Tool
+from lmi.components.media.description import Description
 
 
 @attr.s(auto_attribs=True)
 class Clazz(Description.variant(Type)):
-
     __pyobj_tool: PyObjectTool
 
     def __attrs_post_init__(self):

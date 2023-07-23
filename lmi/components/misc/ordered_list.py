@@ -5,9 +5,9 @@ from abc import abstractmethod
 
 import roman1
 
-from gptos.lmi.misc.truncation import truncate
-from gptos.lmi.components.component import Component
-from gptos.lmi.components.flexbox import FlexBox
+from lmi.misc.truncation import truncate
+from lmi.components.abstract.component import Component
+from lmi.components.layout.flexbox import FlexBox
 
 
 @attr.s(auto_attribs=True)

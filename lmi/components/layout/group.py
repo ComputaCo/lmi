@@ -1,7 +1,7 @@
 from functools import lru_cache
 import attr
-from gptos.tools.tool import Tool, Toolbox
-from gptos.lmi.components.stack import Stack
+from tools.tool import Tool, Toolbox
+from lmi.components.stack import Stack
 
 
 @attr.s(auto_attribs=True)

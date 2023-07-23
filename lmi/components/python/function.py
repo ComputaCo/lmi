@@ -1,16 +1,15 @@
 from functools import lru_cache
 from pathlib import Path
-from types import ModuleType
+import pickle
+from typing import Type
 import attr
-import importlib.util
 
-from gptos.tools.tool import PyObjectTool, Tool
-from gptos.lmi.components.description import Description
+from tools.tool import PyObjectTool, Tool
+from lmi.components.media.description import Description
 
 
 @attr.s(auto_attribs=True, slots=True)
-class Module(Description.variant(ModuleType)):
-
+class Function(Description.variant(Type)):
     __pyobj_tool: PyObjectTool
 
     def __attrs_post_init__(self):
@@ -20,10 +19,8 @@ class Module(Description.variant(ModuleType)):
         self.__pyobj_tool = PyObjectTool(self.clazz)
 
     def loader(self, path: Path = None):
-        spec = importlib.util.spec_from_file_location(path.stem, path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        return module
+        with open(path, "rb") as f:
+            return pickle.load(f)
 
     @property
     @lru_cache()

@@ -1,4 +1,4 @@
-from gptos.lmi.misc.alignment import Alignment
+from lmi.misc.alignment import Alignment
 
 TRUNC_SYMBOL = "…"
 

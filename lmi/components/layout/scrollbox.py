@@ -1,19 +1,18 @@
 from typing import Literal
 import attr
 from abc import abstractmethod
-from gptos.lmi.components.button import Button
+from lmi.components.inputs.button import Button
 
-from gptos.lmi.components.component import Component
-from gptos.lmi.components.text import Text
-from gptos.lmi.handlers.scroll_event_handler import ScrollEventHandler
-from gptos.lmi.misc.truncation import truncate
-from gptos.lmi.utils import normalize
-from gptos.tools.tool import Tool
+from lmi.components.abstract.component import Component
+from lmi.components.form.text import Text
+from lmi.handlers.scroll_event_handler import ScrollEventHandler
+from lmi.misc.truncation import truncate
+from lmi.utils import normalize
+from tools.tool import Tool
 
 
 @attr.s(auto_attribs=True)
 class Scrollbox(Component):
-
     children: list[Component]
     position: int = 0
     separator: str = "\n"

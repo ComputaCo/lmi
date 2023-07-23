@@ -1,10 +1,11 @@
 from enum import Enum
 from typing import Literal
 import attr
-from gptos.lmi.handlers.event_handler import EventHandler
+from lmi.abstract.interactable import LLMCanInteractWithMixin
+from lmi.handlers.event_handler import EventHandler
 
 
-class ScrollEventHandler(EventHandler):
+class ScrollEventHandler(EventHandler, LLMCanInteractWithMixin):
     @attr.s(auto_attribs=True)
     class ScrollEvent(EventHandler.Event):
         class Direction(Enum):
@@ -19,5 +20,13 @@ class ScrollEventHandler(EventHandler):
         direction: Direction
         speed: Speed = Speed.MEDIUM
 
-    def scroll(self, event: ScrollEvent):
+    def on_scroll(self, event: ScrollEvent):
         pass
+
+    @property
+    def on_scroll_tool(self) -> [BaseTool]:
+        return ...
+
+    @property
+    def tools(self) -> list:
+        return super().tools + [self.on_scroll_tool]

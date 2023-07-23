@@ -4,13 +4,12 @@ import pickle
 from types import ModuleType
 import attr
 
-from gptos.tools.tool import PyObjectTool, Tool
-from gptos.lmi.components.description import Description
+from tools.tool import PyObjectTool, Tool
+from lmi.components.media.description import Description
 
 
 @attr.s(auto_attribs=True, slots=True)
 class Object(Description.variant(object)):
-
     __pyobj_tool: PyObjectTool
 
     def __attrs_post_init__(self):

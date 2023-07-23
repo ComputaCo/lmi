@@ -1,4 +1,4 @@
-from lmi.components.component import Component
+from lmi.components.abstract.component import Component
 
 
 class App(Component):
