@@ -1,12 +1,10 @@
+from abc import ABC
 from enum import Enum
-from typing import Literal
-import attr
 from lmi.abstract.interactable import LLMCanInteractWithMixin
 from lmi.handlers.event_handler import EventHandler
 
 
-class ScrollEventHandler(EventHandler, LLMCanInteractWithMixin):
-    @attr.s(auto_attribs=True)
+class ScrollEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
     class ScrollEvent(EventHandler.Event):
         class Direction(Enum):
             UP = "up"
@@ -22,11 +20,3 @@ class ScrollEventHandler(EventHandler, LLMCanInteractWithMixin):
 
     def on_scroll(self, event: ScrollEvent):
         pass
-
-    @property
-    def on_scroll_tool(self) -> [BaseTool]:
-        return ...
-
-    @property
-    def tools(self) -> list:
-        return super().tools + [self.on_scroll_tool]

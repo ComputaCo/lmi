@@ -1,28 +1,28 @@
-import attr
+from abc import ABC
 from lmi.abstract.interactable import LLMCanInteractWithMixin
-
 from lmi.handlers.event_handler import EventHandler
 
 
-class FocusEventHandler(EventHandler, LLMCanInteractWithMixin):
-    @attr.s(auto_attribs=True)
+class FocusEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
     class FocusEvent(EventHandler.Event):
         pass
+
+    _focused: bool = False
+
+    @property
+    def focused(self) -> bool:
+        return self._focused
+
+    @focused.setter
+    def focused(self, value: bool):
+        self._focused = value
+        if value:
+            self.on_focus(self.FocusEvent())
+        else:
+            self.on_blur(self.FocusEvent())
 
     def on_focus(self, event: FocusEvent):
         pass
 
-    def on_unfocus(self, event: FocusEvent):
+    def on_blur(self, event: FocusEvent):
         pass
-
-    @property
-    def on_focus_tool(self) -> [BaseTool]:
-        return ...
-
-    @property
-    def on_unfocus_tool(self) -> [BaseTool]:
-        return ...
-
-    @property
-    def tools(self) -> list:
-        return super().tools + [self.on_focus_tool, self.on_unfocus_tool]

@@ -1,13 +1,26 @@
-import attr
+from abc import ABC
 from lmi.abstract.interactable import LLMCanInteractWithMixin
 
 from lmi.handlers.event_handler import EventHandler
 
 
-class DisplayEventHandler(EventHandler, LLMCanInteractWithMixin):
-    @attr.s(auto_attribs=True)
+class DisplayEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
     class DisplayEvent(EventHandler.Event):
         pass
+
+    _visible: bool = False
+
+    @property
+    def visible(self) -> bool:
+        return self._visible
+
+    @visible.setter
+    def visible(self, value: bool):
+        self._visible = value
+        if value:
+            self.on_show(self.DisplayEvent())
+        else:
+            self.on_hide(self.DisplayEvent())
 
     def on_show(self, event: DisplayEvent):
         """Triggered when a component is starts being shown"""
@@ -16,15 +29,3 @@ class DisplayEventHandler(EventHandler, LLMCanInteractWithMixin):
     def on_hide(self, event: DisplayEvent):
         """Triggered when a component stops being shown"""
         pass
-
-    @property
-    def on_show_tool(self) -> [BaseTool]:
-        return ...
-
-    @property
-    def on_hide_tool(self) -> [BaseTool]:
-        return ...
-
-    @property
-    def tools(self) -> list:
-        return super().tools + [self.on_show_tool, self.on_hide_tool]

@@ -7,6 +7,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+langchain = "^0.0.240"
+pydantic = ">=1,<2"
+fastapi = "^0.100.0"
+httpx = "^0.24.1"
 
 
 [build-system]

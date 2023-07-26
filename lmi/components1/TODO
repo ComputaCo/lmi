@@ -14,28 +14,26 @@ Component
 : Text
   - content
   : TextArea
-  : Button
-    - on_click
-  : AbstractSelect
-    - items
-    - multiple_select: bool
-    : SelectList # the list is visible before
-    : ComboBox # the list is visible after opening the list
-: AbstractLayoutComponent
-  - children
-  : Flexbox
-  : Group
-  : Grid
+: Button
+  - on_click
+  : MenuList
+: AbstractSelect
+  - items
+  - multiple_select: bool
+  : SelectList # the list is visible before
+  : ComboBox # the list is visible after opening the list
+  : OptionList
+  : CheckList
+: PythonComponent
+  : PythonObject
+  : PythonFunction
+  : PythonClass
+  : PythonModule
+: Stack
+: OrderedList
+: UnorderedList
 : ScrollView
-
-
-
-
-
-
-
-
-
+: Dialog
 
 
 The computer is one big composite tool
