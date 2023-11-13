@@ -15,4 +15,7 @@ class LLMCanViewMixin(ABC):
 
 
 class LLMCanInteractWithMixin(ABC):
-    llm_tools: list[BaseTool]
+    @property
+    @abstractmethod
+    def llm_tools(self) -> list[BaseTool]:
+        pass

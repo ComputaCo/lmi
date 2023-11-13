@@ -1,9 +1,17 @@
 [tool.poetry]
-name = "lmi"
+name = "tensaface"
 version = "0.1.0"
 description = ""
-authors = ["Jacob Valdez <jacobfv123@gmail.com>"]
+authors = [
+    "TensaCo <hello@tensaco.ai>",
+    "Jacob Valdez <jacob.valdez@tensaco.ai>",
+]
 readme = "README.md"
+license = "MIT"
+homepage = "https://tensaco.ai"
+repository = "https://github.com/TensaCo/tensaface"
+keywords = ["tensaface", "llm", "interface", "api"]
+packages = [{ include = "tensaface", from = "." }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -12,6 +20,7 @@ typingx = "^0.6.0"
 pydantic = "^2.4.2"
 langchain = "^0.0.335"
 httpx = "^0.25.1"
+jinja2 = "^3.1.2"
 
 
 [build-system]
