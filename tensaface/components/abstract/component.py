@@ -10,7 +10,6 @@ from tensaface.handlers import DisplayEventHandler, EventHandler
 
 
 class Component(
-    DisplayEventHandler,
     LLMCanInteractWithMixin,
     LLMCanViewMixin,
     BaseModel,
@@ -46,6 +45,18 @@ class Component(
                 tools.append(tool)
 
         return tools
+
+    def __tensacode_render__(self, modality: tc.Modality):
+        match modality:
+            case tc.Modality.text:
+                return self.render_llm()
+            case tc.Modality.messages:
+                return list(self.render_messages_llm())
+            # Might be useful in the future
+            # case tc.Modaity.image:
+            #     ...
+            case _:
+                raise ValueError(f"Encoding modality {modality} not supported")
 
     def on_show(self):
         pass
