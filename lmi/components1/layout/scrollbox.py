@@ -1,10 +1,10 @@
 from typing import Literal
 import attr
 from abc import abstractmethod
-from lmi.components.inputs.button import Button
+from lmi.components.core.inputs.button import Button
 
-from lmi.components.abstract.component import Component
-from lmi.components.form.text import Text
+from lmi.components.core.abstract.component import Component
+from lmi.components.core.form.text import Text
 from lmi.handlers.scroll_event_handler import ScrollEventHandler
 from lmi.misc.truncation import truncate
 from lmi.utils import normalize

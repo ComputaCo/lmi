@@ -1,7 +1,7 @@
 import numpy as np
 from moviepy import VideoFileClip
 
-from lmi.components.media.description import Description
+from lmi.components.core.media.description import Description
 
 
 Video = Description.variant(

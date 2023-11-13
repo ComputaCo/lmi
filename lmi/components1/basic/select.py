@@ -1,6 +1,6 @@
 import attr
 
-from lmi.components.python.function import Function
+from lmi.components.core.python.function import Function
 
 
 @attr.s(auto_attribs=True)

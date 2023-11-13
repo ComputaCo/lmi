@@ -3,10 +3,11 @@ from lmi.abstract.interactable import LLMCanInteractWithMixin
 from lmi.handlers.event_handler import EventHandler
 
 
-class FocusEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
-    class FocusEvent(EventHandler.Event):
-        pass
+class FocusEvent(EventHandler.Event):
+    focused: bool
 
+
+class FocusEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
     _focused: bool = False
 
     @property
@@ -16,10 +17,11 @@ class FocusEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
     @focused.setter
     def focused(self, value: bool):
         self._focused = value
+        event = FocusEvent(focused=value)
         if value:
-            self.on_focus(self.FocusEvent())
+            self.on_focus(event)
         else:
-            self.on_blur(self.FocusEvent())
+            self.on_blur(event)
 
     def on_focus(self, event: FocusEvent):
         pass

@@ -4,10 +4,11 @@ from lmi.abstract.interactable import LLMCanInteractWithMixin
 from lmi.handlers.event_handler import EventHandler
 
 
-class DisplayEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
-    class DisplayEvent(EventHandler.Event):
-        pass
+class DisplayEvent(EventHandler.Event):
+    visible: bool
 
+
+class DisplayEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
     _visible: bool = False
 
     @property
@@ -17,10 +18,11 @@ class DisplayEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
     @visible.setter
     def visible(self, value: bool):
         self._visible = value
+        event = DisplayEvent(visible=value)
         if value:
-            self.on_show(self.DisplayEvent())
+            self.on_show(event)
         else:
-            self.on_hide(self.DisplayEvent())
+            self.on_hide(event)
 
     def on_show(self, event: DisplayEvent):
         """Triggered when a component is starts being shown"""

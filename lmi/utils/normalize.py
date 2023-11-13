@@ -1,6 +1,6 @@
 from typing import Callable, Type
 
-from lmi.components.form.text import Text
+from lmi.components.core.form.text import Text
 
 
 def normalize(component):

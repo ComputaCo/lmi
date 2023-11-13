@@ -6,14 +6,15 @@ from lmi.abstract.interactable import LLMCanInteractWithMixin
 from lmi.handlers.mouse_event_handler import BaseMouseEventHandler
 
 
+class ClickEvent(BaseMouseEventHandler.MouseEvent):
+    class ClickType(Enum):
+        SINGLE = "single"
+        DOUBLE = "double"
+
+    click_type: ClickType = ClickType.SINGLE
+
+
 class ClickEventHandler(BaseMouseEventHandler, LLMCanInteractWithMixin, ABC):
-    class ClickEvent(BaseMouseEventHandler.MouseEvent):
-        class ClickType(Enum):
-            SINGLE = "single"
-            DOUBLE = "double"
-
-        click_type: ClickType = ClickType.SINGLE
-
     def on_click(self, event: ClickEvent):
         match event.button, event.click_type:
             case ClickEventHandler.ClickEvent.Buttons.LEFT, ClickEventHandler.ClickEvent.ClickType.SINGLE:

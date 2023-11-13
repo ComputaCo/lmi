@@ -1,10 +1,10 @@
 from abc import abstractmethod
 from pathlib import Path
-from lmi.components.form.text import Text
+from lmi.components.core.form.text import Text
 import stringcase
 import tensorcode as tc
 
-from lmi.components.abstract.component import Component
+from lmi.components.core.abstract.component import Component
 from lmi.misc.alignment import Alignment
 from lmi.misc.truncation import truncate
 

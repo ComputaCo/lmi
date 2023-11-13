@@ -1,8 +1,8 @@
 import attr
 from abc import abstractmethod
 
-from lmi.components.abstract.component import Component
-from lmi.components.layout.scrollbox import ScrollView
+from lmi.components.core.abstract.component import Component
+from lmi.components.core.layout.scrollbox import ScrollView
 from lmi.consts.alignment import Alignment
 from lmi.consts.truncation import truncate
 

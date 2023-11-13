@@ -1,5 +1,5 @@
 from typing import Callable
-from lmi.components.python.function import Function
+from lmi.components.core.python.function import Function
 
 
 class Button(Function):

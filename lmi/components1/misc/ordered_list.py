@@ -6,8 +6,8 @@ from abc import abstractmethod
 import roman1
 
 from lmi.misc.truncation import truncate
-from lmi.components.abstract.component import Component
-from lmi.components.layout.flexbox import FlexBox
+from lmi.components.core.abstract.component import Component
+from lmi.components.core.layout.flexbox import FlexBox
 
 
 @attr.s(auto_attribs=True)

@@ -1,9 +1,9 @@
 import itertools
 from typing import Literal
 import attr
-from lmi.components.form.text import Text
+from lmi.components.core.form.text import Text
 from tools.tool import Tool
-from lmi.components.abstract.component import Component
+from lmi.components.core.abstract.component import Component
 from lmi.misc.alignment import Alignment
 from lmi.misc.truncation import TRUNC_SYMBOL, truncate
 from lmi.utils import normalize

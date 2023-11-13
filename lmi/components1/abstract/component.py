@@ -5,11 +5,9 @@ import re
 from typing import Type
 
 import attr
-from lmi.abstract.interactable import LLMCanInteractWithMixin
-from lmi.abstract.viewable import LLMCanViewMixin
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin, LLMCanViewMixin
 
 from lmi.utils import normalize
-from lmi.misc.alignment import Alignment
 from lmi.handlers.display_event_handler import DisplayEventHandler
 from lmi.handlers.drag_event_handler import DragEventHandler
 from lmi.handlers.drop_event_handler import DropEventHandler

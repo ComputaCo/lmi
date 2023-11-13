@@ -3,10 +3,11 @@ from lmi.abstract.interactable import LLMCanInteractWithMixin
 from lmi.handlers.mouse_event_handler import BaseMouseEventHandler
 
 
-class DragEventHandler(BaseMouseEventHandler, LLMCanInteractWithMixin, ABC):
-    class DragEvent(BaseMouseEventHandler.MouseEvent):
-        obj: object
+class DragEvent(BaseMouseEventHandler.MouseEvent):
+    obj: object
 
+
+class DragEventHandler(BaseMouseEventHandler, LLMCanInteractWithMixin, ABC):
     def on_drag_start(self, event: DragEvent):
         """Triggered on X when X begins being draged."""
 

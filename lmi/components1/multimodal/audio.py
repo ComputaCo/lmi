@@ -1,7 +1,7 @@
 import numpy as np
 from pydub import AudioSegment
 
-from lmi.components.media.description import Description
+from lmi.components.core.media.description import Description
 
 
 class Audio(Description.variant(AudioSegment | np.array)):

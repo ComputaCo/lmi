@@ -5,7 +5,7 @@ import attr
 import importlib.util
 
 from tools.tool import PyObjectTool, Tool
-from lmi.components.media.description import Description
+from lmi.components.core.media.description import Description
 
 
 @attr.s(auto_attribs=True, slots=True)

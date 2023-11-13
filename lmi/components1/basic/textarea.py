@@ -1,6 +1,6 @@
 import attr
-from lmi.components.layout.scrollbox import Scrollbox
-from lmi.components.form.text import Text
+from lmi.components.core.layout.scrollbox import Scrollbox
+from lmi.components.core.form.text import Text
 from lmi.handlers.keyboard_event_handler import KeyboardEventHandler
 
 
