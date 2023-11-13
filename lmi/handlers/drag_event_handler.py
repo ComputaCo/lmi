@@ -1,5 +1,5 @@
 from abc import ABC
-from lmi.abstract.interactable import LLMCanInteractWithMixin
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin
 from lmi.handlers.mouse_event_handler import BaseMouseEventHandler
 
 

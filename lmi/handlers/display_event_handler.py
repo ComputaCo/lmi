@@ -1,14 +1,14 @@
 from abc import ABC
-from lmi.abstract.interactable import LLMCanInteractWithMixin
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin
 
-from lmi.handlers.event_handler import EventHandler
+from lmi.handlers.event_handler import BaseEventHandler
 
 
-class DisplayEvent(EventHandler.Event):
+class DisplayEvent(BaseEventHandler.Event):
     visible: bool
 
 
-class DisplayEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
+class DisplayEventHandler(BaseEventHandler, LLMCanInteractWithMixin, ABC):
     _visible: bool = False
 
     @property

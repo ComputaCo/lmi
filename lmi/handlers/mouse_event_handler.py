@@ -1,12 +1,12 @@
 from abc import ABC
 from enum import Enum
 from typing_extensions import Literal
-from lmi.abstract.interactable import LLMCanInteractWithMixin
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin
 
-from lmi.handlers.event_handler import EventHandler
+from lmi.handlers.event_handler import BaseEvent, BaseEventHandler
 
 
-class MouseEvent(EventHandler.Event):
+class MouseEvent(BaseEvent):
     class Buttons(Enum):
         LEFT = "left"
         MIDDLE = "middle"
@@ -14,6 +14,9 @@ class MouseEvent(EventHandler.Event):
 
     button: Buttons = Buttons.LEFT
 
+class 
+    location: tuple[int, int] = (0, 0)  # TODO: how will i handle location???
 
-class BaseMouseEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
+
+class BaseMouseEventHandler(BaseEventHandler, LLMCanInteractWithMixin, ABC):
     pass

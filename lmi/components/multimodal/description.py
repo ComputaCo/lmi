@@ -25,9 +25,9 @@ class Description(Text):
             self.object = self.loader(path=Path(self.path))
 
         if self.object:
-            self.text = tc.text.describe(self.object)
+            self.text = tc.text.encode(self.object)
         else:
-            self.text = tc.text.describe(path=self.path)
+            self.text = tc.text.encode(path=self.path)
 
     @abstractmethod
     def loader(self, path: Path = None):

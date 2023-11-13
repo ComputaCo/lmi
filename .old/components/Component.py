@@ -1,15 +1,13 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Any, Generator
+from typing import Any, ClassVar, Generator
 from langchain.schema import BaseMessage
 from pydantic import BaseModel
 from langchain.tools import BaseTool
-import lmgui
 from lmi.abstract.human_interface import HumanCanInteractWithMixin, HumanCanViewMixin
 
-from lmi.abstract.interactable import LLMCanInteractWithMixin
-from lmi.abstract.llm_interface import LLMCanViewMixin
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin, LLMCanViewMixin
 from lmi.handlers.advanced_keyboard_event_handler import AdvancedKeyboardEventHandler
 from lmi.handlers.click_event_handler import ClickEventHandler
 
@@ -34,11 +32,11 @@ class Component(
     HumanCanInteractWithMixin,
     HasUniqueNameMixin,
     JSONSerializable,
-    lmgui.Component,
     BaseModel,
 ):
     size: int or None = None
     parent: Component or None = None
+    sep: ClassVar[str] = "\n\n"
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -57,7 +55,7 @@ class Component(
         return self.children
 
     def render_llm(self) -> str:
-        return "\n".join(
+        return self.sep.join(
             [component.render_llm() for component in self.visible_children]
         )
 
@@ -74,15 +72,3 @@ class Component(
             ...
 
         return wrapper
-
-    # TODO: Implement these methods
-    def render_js(self) -> str:
-        return "\n\n".join(
-            [component.render_js() for component in self.visible_children]
-        )
-
-    def subscribe_to_frontend(self, topic: str, subscriber: Any):
-        ...
-
-    def unsubscribe_from_frontend(self, topic: str, subscriber: Any):
-        ...

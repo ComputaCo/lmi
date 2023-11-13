@@ -5,7 +5,7 @@ from typing import Generic, TypeVar
 
 from pydantic import BaseModel
 
-from lmi.handlers.event_handler import Event, EventHandler
+from lmi.handlers.event_handler import BaseEvent, BaseEventHandler
 
 
 T_TARGET = TypeVar("T_TARGET", bound="ReversibleEventHandler")
@@ -28,7 +28,7 @@ class HasEvents(Generic[T_TARGET], BaseModel, ABC):
         self.event_idx += 1
 
 
-class ReversibleEvent(Generic[T_TARGET], Event):
+class ReversibleEvent(Generic[T_TARGET], BaseEvent):
     target: T_TARGET
 
     @abstractmethod
@@ -52,7 +52,9 @@ class CompositeReversibleEvent(
             event.reverse()
 
 
-class ReversibleEventHandler(Generic[T_TARGET], HasEvents[T_TARGET], EventHandler, ABC):
+class ReversibleEventHandler(
+    Generic[T_TARGET], HasEvents[T_TARGET], BaseEventHandler, ABC
+):
     event_idx: int = 0
     events: list[ReversibleEvent[T_TARGET]] = []
 

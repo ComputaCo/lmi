@@ -22,6 +22,7 @@ from lmi.utils.name_generator import HasUniqueNameMixin
 class Component(
     DisplayEventHandler, LLMCanInteractWithMixin, LLMCanViewMixin, HasUniqueNameMixin
 ):
+    name: str
     size: int
 
     @property

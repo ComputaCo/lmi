@@ -1,12 +1,12 @@
 from abc import ABC
-from lmi.abstract.interactable import LLMCanInteractWithMixin
-from lmi.handlers.event_handler import EventHandler
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin
+from lmi.handlers.event_handler import BaseEventHandler
 
 
-class KeyboardEvent(EventHandler.Event):
+class KeyboardEvent(BaseEventHandler.Event):
     raw_input: str
 
 
-class KeyboardEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
+class KeyboardEventHandler(BaseEventHandler, LLMCanInteractWithMixin, ABC):
     def on_key_input(self, event: KeyboardEvent):
         pass

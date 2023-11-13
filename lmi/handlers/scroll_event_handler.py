@@ -1,10 +1,10 @@
 from abc import ABC
 from enum import Enum
-from lmi.abstract.interactable import LLMCanInteractWithMixin
-from lmi.handlers.event_handler import EventHandler
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin
+from lmi.handlers.event_handler import BaseEventHandler
 
 
-class ScrollEvent(EventHandler.Event):
+class ScrollEvent(BaseEventHandler.Event):
     class Direction(Enum):
         UP = "up"
         DOWN = "down"
@@ -18,6 +18,6 @@ class ScrollEvent(EventHandler.Event):
     speed: Speed = Speed.MEDIUM
 
 
-class ScrollEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
+class ScrollEventHandler(BaseEventHandler, LLMCanInteractWithMixin, ABC):
     def on_scroll(self, event: ScrollEvent):
         pass

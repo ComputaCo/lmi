@@ -1,13 +1,13 @@
 from abc import ABC
-from lmi.abstract.interactable import LLMCanInteractWithMixin
-from lmi.handlers.event_handler import EventHandler
+from lmi.abstract.llm_interface import LLMCanInteractWithMixin
+from lmi.handlers.event_handler import BaseEventHandler
 
 
-class FocusEvent(EventHandler.Event):
+class FocusEvent(BaseEventHandler.Event):
     focused: bool
 
 
-class FocusEventHandler(EventHandler, LLMCanInteractWithMixin, ABC):
+class FocusEventHandler(BaseEventHandler, LLMCanInteractWithMixin, ABC):
     _focused: bool = False
 
     @property
