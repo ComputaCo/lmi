@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tensaface"
+name = "lmi"
 version = "0.1.0"
 description = ""
 authors = [
@@ -9,9 +9,9 @@ authors = [
 readme = "README.md"
 license = "MIT"
 homepage = "https://tensaco.ai"
-repository = "https://github.com/TensaCo/tensaface"
-keywords = ["tensaface", "llm", "interface", "api"]
-packages = [{ include = "tensaface", from = "." }]
+repository = "https://github.com/TensaCo/lmi"
+keywords = ["lmi", "llm", "interface", "api"]
+packages = [{ include = "lmi", from = "." }]
 
 [tool.poetry.dependencies]
 python = "^3.10"

@@ -1,11 +1,11 @@
-# TensaFace
+# LMI
 
 > Interfaces for AI
 
 ## Usage
 
 ```python
-from tensaface import component, app, use_state
+from lmi import component, app, use_state
 
 @component
 def MyButton(text, on_click):

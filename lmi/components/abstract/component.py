@@ -5,8 +5,8 @@ from langchain.tools import BaseTool
 
 from pydantic import BaseModel
 
-from tensaface._internal.llm_interface import LLMCanInteractWithMixin, LLMCanViewMixin
-from tensaface.handlers import DisplayEventHandler, EventHandler
+from lmi._internal.llm_interface import LLMCanInteractWithMixin, LLMCanViewMixin
+from lmi.handlers import DisplayEventHandler, EventHandler
 
 
 class Component(

@@ -3,7 +3,7 @@ from typing import Callable
 
 from langchain.tools.base import BaseTool
 
-from tensaface.components.abstract.component import Component
+from lmi.components.abstract.component import Component
 
 
 class EventHandler(Component):
