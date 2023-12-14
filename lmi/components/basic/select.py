@@ -17,6 +17,10 @@ class Select(Function):
     def render(self) -> str:
         text = ""
         for idx, option in enumerate(self.options):
-            prefix = self.SELECTED_TEMPLATE if idx in self.selected else self.UNSELECTED_TEMPLATE
+            prefix = (
+                self.SELECTED_TEMPLATE
+                if idx in self.selected
+                else self.UNSELECTED_TEMPLATE
+            )
             text += prefix % option
         return text

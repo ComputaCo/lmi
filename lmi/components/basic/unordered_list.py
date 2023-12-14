@@ -6,11 +6,12 @@ from lmi.components.layout.flexbox import Flexbox
 
 import roman
 
+
 @attr.s(auto_attribs=True)
 class UnorderedList(Flexbox):
-    
+
     # FIXME: merge this with ordered_list.py
-    
+
     bullet = "- "
     format_string = r"{bullet}{item}\n"
 

@@ -6,6 +6,7 @@ from lmi.components.layout.flexbox import Flexbox
 
 import roman
 
+
 @attr.s(auto_attribs=True)
 class OrderedList(Flexbox):
     class BulletStyle(Enum):

@@ -1,7 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Generator
 
-from reactpy.core.component import Component as reactpy_Component, component as reactpy_component
+from reactpy.core.component import (
+    Component as reactpy_Component,
+    component as reactpy_component,
+)
 from langchain.schema import BaseMessage
 from langchain.tools import BaseTool
 
