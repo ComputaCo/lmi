@@ -1,26 +1,27 @@
 [tool.poetry]
 name = "lmi"
-version = "0.1.0"
-description = ""
+version = "0.0.1"
+description = "Language model interface framework"
 authors = [
-    "TensaCo <hello@tensaco.ai>",
-    "Jacob Valdez <jacob.valdez@tensaco.ai>",
+    "ComputaCo <hello@computaco.ai>",
+    "Jacob Valdez <jacob.valdez@computaco.ai>",
 ]
 readme = "README.md"
 license = "MIT"
-homepage = "https://tensaco.ai"
-repository = "https://github.com/TensaCo/lmi"
+homepage = "https://computaco.ai"
+repository = "https://github.com/ComputaCo/lmi"
 keywords = ["lmi", "llm", "interface", "api"]
-packages = [{ include = "lmi", from = "." }]
+packages = [{ include = "lmi" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 inspect-mate-pp = "^0.0.4"
 typingx = "^0.6.0"
 pydantic = "^2.4.2"
-langchain = "^0.0.335"
 httpx = "^0.25.1"
 jinja2 = "^3.1.2"
+python-hooks = "^0.2.1"
+langchain = "^0.0.350"
 
 
 [build-system]
