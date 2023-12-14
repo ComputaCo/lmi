@@ -2,11 +2,7 @@ from __future__ import annotations
 
 from typing import Callable, Self, Type, TypeVar, Union
 
-from langchain.tools.base import BaseTool
-
-from lmi.components.abstract.component import Component
-
-from langchain.tools.base import BaseTool
+from langchain.tools.base import BaseTool, tool
 
 from lmi.components.abstract.component import Component
 
@@ -25,17 +21,14 @@ class ClickEventHandler(MouseEventHandler):
     on_click: Callable[[], None]
 
     @classmethod
-    def llm_tools_from_handlers(cls, handlers: list[Self]) -> BaseTool:
+    def llm_tools_from_handlers(cls, handlers: list[Self]) -> list[BaseTool]:
+        @tool
         def click(name):
+            "clicks the component"
             component = cls.get_child_by_name(handlers, name)
             component.on_click()
 
-        return BaseTool(
-            name="click",
-            description="clicks the component",
-            args=["name"],
-            func=click,
-        )
+        return [click]
 
 
 # Not sure what the use case is for this:
@@ -49,7 +42,7 @@ class KeyboardEventHandler(EventHandler):
     on_input: Callable[[str], None]
 
     @classmethod
-    def llm_tools_from_handlers(cls, handlers: list[Self]) -> BaseTool:
+    def llm_tools_from_handlers(cls, handlers: list[Self]) -> list[BaseTool]:
         def type(name):
             component = cls.get_child_by_name(handlers, name)
             component.on_input()
