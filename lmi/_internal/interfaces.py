@@ -19,3 +19,9 @@ class LLMCanInteractWithMixin(ABC):
     @abstractmethod
     def llm_tools(self) -> list[BaseTool]:
         pass
+
+
+class ViewableAsHTMLMixin(ABC):
+    @abstractmethod
+    def render_html(self) -> reactpy.Component:
+        pass

@@ -16,6 +16,27 @@ def app():
         lmi.Label("Hello, world!"),
         MyButton("Click me!", on_click=lambda: print("Clicked!"))
     ])
+
+
+@lmi.app
+def app():
+    return [
+        "Hello, world!",
+        MyButton("Click me!", on_click=lambda: print("Clicked!"))
+    ]
+
+"""
+<screen>
+Hello, world!
+[Click me!]
+</screen>
+
+
+Tools:
+- click: click a [button] on the screen
+- type: type [text] into a <textbox> on the screen
+"""
+
 ```
 
 ## Rapid dev and deployment
@@ -26,6 +47,8 @@ app.cli() # experience the app yourself in the terminal
 
 ```python
 app.run(agent) # agent is a langchain (str)->str agent
+
+app.function / tool
 ```
 
 ```python

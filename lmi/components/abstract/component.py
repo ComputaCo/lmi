@@ -5,7 +5,7 @@ from langchain.tools import BaseTool
 
 from pydantic import BaseModel
 
-from lmi._internal.llm_interface import LLMCanInteractWithMixin, LLMCanViewMixin
+from lmi._internal.interfaces import LLMCanInteractWithMixin, LLMCanViewMixin
 from lmi.handlers import DisplayEventHandler, EventHandler
 
 
@@ -46,17 +46,18 @@ class Component(
 
         return tools
 
-    def __tensacode_render__(self, modality: tc.Modality):
-        match modality:
-            case tc.Modality.text:
-                return self.render_llm()
-            case tc.Modality.messages:
-                return list(self.render_messages_llm())
-            # Might be useful in the future
-            # case tc.Modaity.image:
-            #     ...
-            case _:
-                raise ValueError(f"Encoding modality {modality} not supported")
+    # FIXME: implement this in the future when component trees become native tc objects
+    # def __tensacode_render__(self, modality: tc.Modality):
+    #     match modality:
+    #         case tc.Modality.text:
+    #             return self.render_llm()
+    #         case tc.Modality.messages:
+    #             return list(self.render_messages_llm())
+    #         # Might be useful in the future
+    #         # case tc.Modaity.image:
+    #         #     ...
+    #         case _:
+    #             raise ValueError(f"Encoding modality {modality} not supported")
 
     def on_show(self):
         pass
