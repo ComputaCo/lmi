@@ -1,0 +1,15 @@
+[submodule "examples/gptOS"]
+	path = examples/gptOS
+	url = https://github.com/ComputaCo/gptOS.git
+[submodule "examples/lmi-ide"]
+	path = examples/lmi-ide
+	url = https://github.com/ComputaCo/lmi-ide.git
+[submodule "examples/lmi-web-browser"]
+	path = examples/lmi-web-browser
+	url = https://github.com/ComputaCo/lmi-web-browser.git
+[submodule "examples/lmi-calculator"]
+	path = examples/lmi-calculator
+	url = https://github.com/ComputaCo/lmi-calculator.git
+[submodule "examples/lmi-terminal"]
+	path = examples/lmi-terminal
+	url = https://github.com/ComputaCo/lmi-terminal.git
