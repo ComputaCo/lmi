@@ -1,6 +1,8 @@
 from typing import Callable
 
+from lmi.components.abstract.component import Component
+from lmi.utils.misc import PASS
 
-class Button(Function):
-    def __init__(self, title: str, on_click: Callable):
-        super.__init__(name=title, fn=on_click)
+
+class Button(Component):
+    on_click: Callable[[], None] = PASS

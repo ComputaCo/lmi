@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Generator
+
+from reactpy.core.component import Component as reactpy_Component, component as reactpy_component
 from langchain.schema import BaseMessage
 from langchain.tools import BaseTool
 
@@ -7,21 +9,22 @@ from langchain.tools import BaseTool
 class LLMCanViewMixin(ABC):
     @abstractmethod
     def render_llm(self) -> str:
-        pass
+        raise NotImplementedError("`render_llm` not implemented")
 
     @abstractmethod
     def render_messages_llm(self) -> Generator[BaseMessage, None, None]:
-        pass
+        raise NotImplementedError("`render_messages_llm` not implemented")
 
 
 class LLMCanInteractWithMixin(ABC):
     @property
     @abstractmethod
     def llm_tools(self) -> list[BaseTool]:
-        pass
+        raise NotImplementedError("`llm_tools` not implemented")
 
 
-class RendersToHTMLMixin(ABC):
+class RendersToReactPyMixin(ABC):
     @abstractmethod
-    def render_html(self) -> reactpy.Component:
-        pass
+    @reactpy_component
+    def render_reactpy(self) -> reactpy_Component:
+        raise NotImplementedError("`render_reactpy` not implemented")

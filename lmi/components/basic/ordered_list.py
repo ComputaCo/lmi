@@ -2,17 +2,13 @@ from enum import Enum, auto
 import math
 import attr
 from abc import abstractmethod
+from lmi.components.layout.flexbox import Flexbox
 
-import roman1
-
-from lmi.misc.truncation import truncate
-from lmi.components.core.abstract.component import Component
-from lmi.components.core.layout.flexbox import FlexBox
-
+import roman
 
 @attr.s(auto_attribs=True)
-class NumberedList(Stack):
-    class NumberingStyle(Enum):
+class OrderedList(Flexbox):
+    class BulletStyle(Enum):
         NUMBERS = auto()
         ROMAN_NUMERALS = auto()
         LOWERCASE_LETTERS = auto()
@@ -20,11 +16,11 @@ class NumberedList(Stack):
 
         @staticmethod
         def __iter__(self):
-            if self is NumberedList.NumberingStyle.NUMBERS:
+            if self is OrderedList.BulletStyle.NUMBERS:
                 return iter(iter(range(math.inf)))
-            elif self is NumberedList.NumberingStyle.ROMAN_NUMERALS:
+            elif self is OrderedList.BulletStyle.ROMAN_NUMERALS:
                 return iter(map(roman.toRoman, range(math.inf)))
-            elif self is NumberedList.NumberingStyle.LOWERCASE_LETTERS:
+            elif self is OrderedList.BulletStyle.LOWERCASE_LETTERS:
 
                 def to_alpha(n):
                     if n < 26:
@@ -33,7 +29,7 @@ class NumberedList(Stack):
                         return to_alpha(n // 26 - 1) + to_alpha(n % 26)
 
                 return iter(map(to_alpha, range(math.inf)))
-            elif self is NumberedList.NumberingStyle.CAPITAL_LETTERS:
+            elif self is OrderedList.BulletStyle.CAPITAL_LETTERS:
 
                 def to_Alpha(n):
                     if n < 26:
@@ -45,8 +41,8 @@ class NumberedList(Stack):
             else:
                 raise ValueError("Invalid NumberingStyle")
 
-    format_string = r"{bullet}. {item}"
-    numbering_style: NumberingStyle = NumberingStyle.NUMBERS
+    numbering_style: BulletStyle = BulletStyle.NUMBERS
+    format_string = r"{bullet}. {item}\n"
 
     def render(self, size) -> str:
         output = ""
@@ -54,4 +50,4 @@ class NumberedList(Stack):
             output += self.format_string.format(
                 bullet=bullet, item=child.render(child.preferred_size)
             )
-        return truncate(output, self.truncation_alignment, size)
+        return super()._render_text(output, size)

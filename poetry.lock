@@ -1695,6 +1695,18 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "roman"
+version = "4.1"
+description = "Integer to Roman numerals converter"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "roman-4.1-py3-none-any.whl", hash = "sha256:f131fd5eee3510f6173b825404eb97875a6c1925f73a2d7d48cfc67823a67c3c"},
+    {file = "roman-4.1.tar.gz", hash = "sha256:4da8a200529a730822a27f1704b3ac70bc907141d3bc558115fb8e36af13b412"},
+]
+
+[[package]]
 name = "ruamel-yaml"
 version = "0.18.5"
 description = "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order"
@@ -2358,4 +2370,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "2b2e00a272cd2b83258e71dc5a687749a2a928d2b7ef3a67327cd9360349477c"
+content-hash = "a2c270b9c812e42c7087b62db15015c05e86cf351508733b708f65b6608e22a5"

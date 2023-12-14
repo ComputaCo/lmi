@@ -1,4 +1,4 @@
-from lmi.components.core.abstract.component import Component
+from lmi.components.abstract.component import Component
 
 
 class Dialog(Component):

@@ -1,0 +1,1 @@
+PASS = lambda *args, **kwargs: None
