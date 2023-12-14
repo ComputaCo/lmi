@@ -8,7 +8,7 @@ class App(Component):
         pass
     
     def cli(self):
-        '''Run the app as text in the command line'''
+        '''Run the app as interactive text in the command line'''
         pass
     
     def run(self, agent):
