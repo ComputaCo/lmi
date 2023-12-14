@@ -5,11 +5,12 @@ from langchain.tools import BaseTool
 
 from pydantic import BaseModel
 
-from lmi._internal.interfaces import LLMCanInteractWithMixin, LLMCanViewMixin
+from lmi.utils.interfaces import LLMCanInteractWithMixin, LLMCanViewMixin, RendersToHTMLMixin
 from lmi.handlers import DisplayEventHandler, EventHandler
 
 
 class Component(
+    RendersToHTMLMixin,
     LLMCanInteractWithMixin,
     LLMCanViewMixin,
     BaseModel,

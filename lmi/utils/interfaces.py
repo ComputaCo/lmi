@@ -21,7 +21,7 @@ class LLMCanInteractWithMixin(ABC):
         pass
 
 
-class ViewableAsHTMLMixin(ABC):
+class RendersToHTMLMixin(ABC):
     @abstractmethod
     def render_html(self) -> reactpy.Component:
         pass

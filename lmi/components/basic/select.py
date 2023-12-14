@@ -7,8 +7,8 @@ class Select(Function):
     options: list[str] = attr.ib(factory=list)
     selected: list[int] = attr.ib(factory=list)
 
-    SELECTED = jinja2.Template("> {{option}}")
-    UNSELECTED = jinja2.Template("  {{option}}")
+    SELECTED_TEMPLATE = jinja2.Template("(*) {{option}}")
+    UNSELECTED_TEMPLATE = jinja2.Template("( ) {{option}}")
 
     @tool
     def select(self, option: str) -> None:
@@ -17,6 +17,6 @@ class Select(Function):
     def render(self) -> str:
         text = ""
         for idx, option in enumerate(self.options):
-            prefix = self.SELECTED if idx in self.selected else self.UNSELECTED
+            prefix = self.SELECTED_TEMPLATE if idx in self.selected else self.UNSELECTED_TEMPLATE
             text += prefix % option
         return text

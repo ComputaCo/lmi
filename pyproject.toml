@@ -22,6 +22,8 @@ httpx = "^0.25.1"
 jinja2 = "^3.1.2"
 python-hooks = "^0.2.1"
 langchain = "^0.0.350"
+reactpy = {extras = ["fastapi", "starlette"], version = "^1.0.2"}
+typer = "^0.9.0"
 
 
 [build-system]
