@@ -1,2 +1,2 @@
-component = Component.dec
-app = App.dec
+component = Component.dec # TODO: implement
+app = App.dec # TODO: implement

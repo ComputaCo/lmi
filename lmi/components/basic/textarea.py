@@ -1,16 +1,13 @@
-import attr
-from lmi.components.core.layout.scrollbox import Scrollbox
-from lmi.components.core.form.text import Text
-from lmi.handlers.keyboard_event_handler import KeyboardEventHandler
+from lmi.components.layout.scrollbox import Scrollbox
+from lmi.handlers import KeyboardEventHandler
 
 
-@attr.s(auto_attribs=True)
 class TextArea(Scrollbox, KeyboardEventHandler):
     """Used for editing text that requires more than one-shot input. (For one shot input, use Input.)"""
 
     multiline = True
     cursor = "▮"
-    cursor_location = (0, 0) # (horizontal, vertical)
+    cursor_location = (0, 0)  # (horizontal, vertical)
 
     text: Text = attr.ib(init=False, default=attr.Factory(Text))
 
@@ -39,14 +36,11 @@ class TextArea(Scrollbox, KeyboardEventHandler):
             elif key == "END":
                 self.cursor_location = len(self.text)
             elif key == "ENTER":
-                self.text = (
-                    self.text[: self.cursor_location]
-                    + "
-        
+                self.text = self.text[: self.cursor_location] + ""
+
         if DOWN_ARROW in event.keys:
-            
-        
-        
+            ...
+
         self.text = (
             self.text[: self.cursor_location]
             + event.key

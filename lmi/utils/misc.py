@@ -1,4 +1,8 @@
+from typing import Callable
+
+
 PASS = lambda *args, **kwargs: None
+Handler = Callable[[], None]
 
 namespace_counter = {}
 

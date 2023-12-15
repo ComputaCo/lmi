@@ -13,3 +13,5 @@ class App(Component):
     def run(self, agent):
         """Run the app as text against some langchain agent"""
         pass
+
+        # TODO: add peripheral support. They can be enabled via param during init
