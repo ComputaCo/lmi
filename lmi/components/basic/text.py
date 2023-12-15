@@ -10,6 +10,7 @@ from reactpy.core.component import (
 
 from lmi.components.abstract.component import Component
 
+
 class Text(Component):
     text: str
 

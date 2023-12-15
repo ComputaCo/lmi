@@ -212,14 +212,14 @@ class Component(
 
     def render_to_text(self):
         return "\n\n".join(message.content for message in self.render_to_messages())
-    
+
     def render_to_messages(self):
         yield from []
 
     @reactpy_component
     def render_to_reactpy(self) -> reactpy_Component:
-        return html.div([html.span(m.content )for m in self.render_to_messages()])
-    
+        return html.div([html.span(m.content) for m in self.render_to_messages()])
+
     @property
     def lc_tools(self) -> list[BaseTool]:
         return []
