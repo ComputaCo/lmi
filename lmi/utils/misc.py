@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Literal
 
 
 PASS = lambda *args, **kwargs: None

@@ -25,6 +25,7 @@ from lmi.utils.interfaces import (
 )
 from lmi.handlers import DisplayEventHandler, EventHandler
 from lmi.utils.misc import PASS, Handler, gen_unique_name
+from lmi.utils.python import HasPostInit
 
 
 class Component(
@@ -32,22 +33,35 @@ class Component(
     HasLangchainTools,
     RendersToMessages,
     RendersToText,
+    HasPostInit,
     BaseModel,
     ABC,
 ):
     name: str | None = Field(None, description="The name of the component.")
+    description: str | None = None
+    parent: Component | None = Field(None, init=False, repr=False)
+    # FIXME: implement the following fields into render methods
+    # chars_priority: str | None = Field(None, description="The spatial allocation priority given to this component.")
+    # min_chars: int | None = Field(None, description="The minimum number of characters this component should take up.")
+    # max_chars: int | None = Field(None, description="The maximum number of characters this component should take up.")
 
     @validator("name")
     def check_name(cls, v):
-        return v or gen_unique_name(cls.__name__)
+        return (v or gen_unique_name(cls.__name__)).replace(" ", "_")
+    @property
+    def qualified_name(self) -> str:
+        return self.parent.qualified_name + "." + self.name
 
-    parent: Component | None = Field(None, init=False, repr=False)
+    _children: list[Component] = Field([], init=False, repr=False)
 
     @property
     @abstractmethod
     def children(self) -> list[Component]:
         # declared as property rather than attr because not all components have children
-        return []
+        return normalize(self._children)
+    @children.setter
+    def children(self, value: list[Component]):
+        self._children = value
 
     @property
     def children_recursive(self) -> list[Component]:
@@ -69,7 +83,8 @@ class Component(
                 return child
         raise ValueError(f"no child with name {name}")
 
-    _enabled: bool = True
+    _enabled: bool = Field(True, description="Whether this component is enabled.", init=False, repr=False)
+    # FIXME: how can i get `_enabled` to show up as `enabled` in the init signature and obj repr?
 
     @property
     def enabled(self) -> bool:
@@ -105,7 +120,9 @@ class Component(
     def enabled_children(self) -> list[Component]:
         return [child for child in self.children if child.enabled]
 
-    _visible: bool = True
+    _visible: bool = Field(True, description="Whether this component is visible.", init=False, repr=False)
+    # FIXME: how can i get `_visible` to show up as `visible` in the init signature and obj repr?
+    
 
     @property
     def visible(self) -> bool:
@@ -211,13 +228,31 @@ class Component(
         self.focused_child = self.focusable_children[new_focused_index]
 
     def render_to_text(self):
+        if not self.visible:
+            return ""
+        return self._render_to_text()
+    
+    def _render_to_text(self):
         return "\n\n".join(message.content for message in self.render_to_messages())
 
     def render_to_messages(self):
-        yield from []
+        if not self.visible:
+            return
+        yield from self._render_to_messages()
+        if self.description:
+            yield HumanMessage(f'({self.description})')
+    
+    def _render_to_messages(self):
+        for child in self.children:
+            yield from child.render_to_messages()
+
+    def render_to_reactpy(self) -> reactpy_Component:
+        if not self.visible:
+            return
+        return self._render_to_reactpy()
 
     @reactpy_component
-    def render_to_reactpy(self) -> reactpy_Component:
+    def _render_to_reactpy(self) -> reactpy_Component:
         return html.div([html.span(m.content) for m in self.render_to_messages()])
 
     @property

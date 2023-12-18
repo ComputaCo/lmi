@@ -1,17 +1,7 @@
 from typing import Literal
-import attr
-from abc import abstractmethod
-from lmi.components.core.inputs.button import Button
-
-from lmi.components.core.abstract.component import Component
-from lmi.components.core.form.text import Text
-from lmi.handlers.scroll_event_handler import ScrollEventHandler
-from lmi.misc.truncation import truncate
-from lmi.utils import normalize
-from tools.tool import Tool
+from lmi.components.abstract.component import Component
 
 
-@attr.s(auto_attribs=True)
 class Scrollbox(Component):
     children: list[Component]
     position: int = 0
@@ -23,18 +13,7 @@ class Scrollbox(Component):
     _scroll_down_button: Button
     _scroll_up_button: Button
 
-    __rendered_components: list[Component] = attr.ib(init=False, default=[])
-
-    @property
-    def tools(self) -> list[Tool]:
-        return sum([component.tools for component in self.components], [])
-
-    @property
-    def visible_components(self) -> list[Component]:
-        return self.__rendered_components
-
-    def __attrs_post_init__(self):
-        self.children = [normalize(child) for child in self.children]
+    def __post_init__(self):
         self._scroll_down_button = Button(
             title=self.scroll_down_symbol,
             on_click=lambda: self.scroll(
@@ -120,9 +99,3 @@ class Scrollbox(Component):
                 size = total_preferred_size
         return size
 
-    def _interleave_separators(self, children):
-        seperator = Text(self.separator)
-        for i, child in enumerate(children):
-            yield child
-            if i != len(children) - 1:
-                yield seperator
