@@ -34,7 +34,7 @@ class Component(
     RendersToText,
     BaseModel,
     ABC,
-): 
+):
     name: str | None = Field(None, description="The name of the component.")
 
     @validator("name")
