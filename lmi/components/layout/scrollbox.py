@@ -98,4 +98,3 @@ class Scrollbox(Component):
                 # if the total max_size is less than the size, adjust our expected size to the total max_size
                 size = total_preferred_size
         return size
-

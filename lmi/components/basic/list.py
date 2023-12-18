@@ -47,14 +47,14 @@ class List(Component):
                         return to_Alpha(n // 26 - 1) + to_Alpha(n % 26)
 
                 return iter(map(to_Alpha, range(math.inf)))
-            
+
             elif self is List.BulletStyle.BULLETS:
                 return iter(itertools.cycle(["•"]))
             elif self is List.BulletStyle.DOTS:
                 return iter(itertools.cycle(["·"]))
             elif self is List.BulletStyle.DASHES:
                 return iter(itertools.cycle(["-"]))
-            
+
             else:
                 raise ValueError("Invalid NumberingStyle")
 
@@ -66,9 +66,13 @@ class List(Component):
     @cached_property
     def children(self):
         return [
-            Text(text=self.format_string.format(
+            Text(
+                text=self.format_string.format(
                     bullet=next(iter(self.bullet_style)),
                     item=item.render_to_text(),
-                ), parent=self, name=f"{i}")
+                ),
+                parent=self,
+                name=f"{i}",
+            )
             for i, item in enumerate(self.items)
         ]

@@ -48,6 +48,7 @@ class Component(
     @validator("name")
     def check_name(cls, v):
         return (v or gen_unique_name(cls.__name__)).replace(" ", "_")
+
     @property
     def qualified_name(self) -> str:
         return self.parent.qualified_name + "." + self.name
@@ -59,6 +60,7 @@ class Component(
     def children(self) -> list[Component]:
         # declared as property rather than attr because not all components have children
         return normalize(self._children)
+
     @children.setter
     def children(self, value: list[Component]):
         self._children = value
@@ -83,7 +85,9 @@ class Component(
                 return child
         raise ValueError(f"no child with name {name}")
 
-    _enabled: bool = Field(True, description="Whether this component is enabled.", init=False, repr=False)
+    _enabled: bool = Field(
+        True, description="Whether this component is enabled.", init=False, repr=False
+    )
     # FIXME: how can i get `_enabled` to show up as `enabled` in the init signature and obj repr?
 
     @property
@@ -120,9 +124,10 @@ class Component(
     def enabled_children(self) -> list[Component]:
         return [child for child in self.children if child.enabled]
 
-    _visible: bool = Field(True, description="Whether this component is visible.", init=False, repr=False)
+    _visible: bool = Field(
+        True, description="Whether this component is visible.", init=False, repr=False
+    )
     # FIXME: how can i get `_visible` to show up as `visible` in the init signature and obj repr?
-    
 
     @property
     def visible(self) -> bool:
@@ -231,7 +236,7 @@ class Component(
         if not self.visible:
             return ""
         return self._render_to_text()
-    
+
     def _render_to_text(self):
         return "\n\n".join(message.content for message in self.render_to_messages())
 
@@ -240,8 +245,8 @@ class Component(
             return
         yield from self._render_to_messages()
         if self.description:
-            yield HumanMessage(f'({self.description})')
-    
+            yield HumanMessage(f"({self.description})")
+
     def _render_to_messages(self):
         for child in self.children:
             yield from child.render_to_messages()
