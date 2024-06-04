@@ -88,7 +88,7 @@ class Component(
     _enabled: bool = Field(
         True, description="Whether this component is enabled.", init=False, repr=False
     )
-    # FIXME: how can i get `_enabled` to show up as `enabled` in the init signature and obj repr?
+    # FIXME: how can i get `_enabled` to show up as `enabled` in the init signature and obj repr? A: use pydantic alias
 
     @property
     def enabled(self) -> bool:
