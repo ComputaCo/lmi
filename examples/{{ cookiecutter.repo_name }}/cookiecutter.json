@@ -1,0 +1,7 @@
+{
+  "project_name": "LMI App",
+  "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+  "author_name": "Your Name",
+  "description": "A short description of the project.",
+  "package_name": "{{ cookiecutter.repo_name.replace('-', '_') }}"
+}
